@@ -19,6 +19,7 @@ int			ft_isalnum(char);
 int			ft_isprint(char);
 char		ft_toupper(char);
 char		ft_tolower(char);
+int			ft_puts(char *);
 int			ft_strlen(char *);
 
 void	bzero_test()
@@ -180,6 +181,11 @@ void	tolower_test()
 	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
 }
 
+void	puts_test()
+{
+	ft_puts("\033[1;32m |OK| puts_test\033[0m\n");
+}
+
 void	strlen_test()
 {
 	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
@@ -201,6 +207,8 @@ int main(void)
 	isprint_test();
 	toupper_test();
 	tolower_test();
+	puts_test();
 	strlen_test();
+	ft_puts("hello\n");
 	return (0);
 }
