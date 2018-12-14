@@ -14,6 +14,8 @@ char		*ft_strcat(char *, char *);
 int			ft_isupper(char);
 int			ft_islower(char);
 int			ft_isalpha(char);
+int			ft_isdigit(char);
+int			ft_isalnum(char);
 int			ft_strlen(char *);
 
 void	bzero_test()
@@ -85,6 +87,44 @@ void	isalpha_test()
 	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
 }
 
+void	isdigit_test()
+{
+	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
+	assert(ft_isdigit('0') == 1);
+	assert(ft_isdigit('3') == 1);
+	assert(ft_isdigit('9') == 1);
+	assert(ft_isdigit(':') == 0);
+	assert(ft_isdigit('/') == 0);
+	assert(ft_isdigit('~') == 0);
+	assert(ft_isdigit(' ') == 0);
+	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
+}
+
+void	isalnum_test()
+{
+	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
+	assert(ft_isalnum('a') == 1);
+	assert(ft_isalnum('z') == 1);
+	assert(ft_isalnum('l') == 1);
+	assert(ft_isalnum('A') == 1);
+	assert(ft_isalnum('Z') == 1);
+	assert(ft_isalnum('[') == 0);
+	assert(ft_isalnum('{') == 0);
+	assert(ft_isalnum('\n') == 0);
+	assert(ft_isalnum('~') == 0);
+	assert(ft_isalnum('{') == 0);
+	assert(ft_isalnum('`') == 0);
+	assert(ft_isalnum(' ') == 0);
+	assert(ft_isalnum('0') == 1);
+	assert(ft_isalnum('3') == 1);
+	assert(ft_isalnum('9') == 1);
+	assert(ft_isalnum(':') == 0);
+	assert(ft_isalnum('/') == 0);
+	assert(ft_isalnum('~') == 0);
+	assert(ft_isalnum(' ') == 0);
+	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
+}
+
 void	strlen_test()
 {
 	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
@@ -101,6 +141,8 @@ int main(void)
 	isupper_test();
 	islower_test();
 	isalpha_test();
+	isdigit_test();
+	isalnum_test();
 	strlen_test();
 	return (0);
 }

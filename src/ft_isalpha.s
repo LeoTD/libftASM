@@ -11,7 +11,7 @@
 _ft_isalpha:
 	xor		rax, rax
 	and		dil, 0b1101_1111	; ⎢  Turn lowercase into upper
-	sub		dil, 65				; ⎢  Align range boundary to 0
+	sub		dil, 'A'			; ⎢  Align range boundary to 0
 	cmp		dil, 26				; ⎢  compare against range size
 	jae		false
 	inc		rax

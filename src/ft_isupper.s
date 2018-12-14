@@ -10,7 +10,7 @@
 			section		.text
 _ft_isupper:
 	xor		rax, rax
-	sub		rdi, 65		; ⎢  Align to lower range boundary. This allows an unsigned comparison.
+	sub		rdi, 'A'	; ⎢  Align to lower range boundary. This allows an unsigned comparison.
 	cmp		rdi, 26		; ⎢  Compare against size of range.
 	jae		false		; ⎢  Jump if above or equal. Ignores sign flag.
 	inc		rax
