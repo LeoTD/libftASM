@@ -17,6 +17,8 @@ int			ft_isalpha(char);
 int			ft_isdigit(char);
 int			ft_isalnum(char);
 int			ft_isprint(char);
+char		ft_toupper(char);
+char		ft_tolower(char);
 int			ft_strlen(char *);
 
 void	bzero_test()
@@ -154,6 +156,30 @@ void	isprint_test()
 	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
 }
 
+void	toupper_test()
+{
+	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
+	assert(ft_toupper('z') == 'Z');
+	assert(ft_toupper('a') == 'A');
+	assert(ft_toupper('l') == 'L');
+	assert(ft_toupper('G') == 'G');
+	assert(ft_toupper('@') == '@');
+	assert(ft_toupper('~') == '~');
+	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
+}
+
+void	tolower_test()
+{
+	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
+	assert(ft_tolower('Z') == 'z');
+	assert(ft_tolower('A') == 'a');
+	assert(ft_tolower('L') == 'l');
+	assert(ft_tolower('g') == 'g');
+	assert(ft_tolower('@') == '@');
+	assert(ft_tolower('~') == '~');
+	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
+}
+
 void	strlen_test()
 {
 	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
@@ -173,6 +199,8 @@ int main(void)
 	isdigit_test();
 	isalnum_test();
 	isprint_test();
+	toupper_test();
+	tolower_test();
 	strlen_test();
 	return (0);
 }

@@ -17,6 +17,8 @@ FILES		= ft_strlen.s \
 			  ft_isdigit.s \
 			  ft_isalnum.s \
 			  ft_isprint.s \
+			  ft_toupper.s \
+			  ft_tolower.s \
 
 SRC			= $(addprefix src/, $(FILES))
 OBJ			= $(addprefix obj/, $(FILES:.s=.o))
