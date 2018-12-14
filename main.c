@@ -16,6 +16,7 @@ int			ft_islower(char);
 int			ft_isalpha(char);
 int			ft_isdigit(char);
 int			ft_isalnum(char);
+int			ft_isprint(char);
 int			ft_strlen(char *);
 
 void	bzero_test()
@@ -125,6 +126,34 @@ void	isalnum_test()
 	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
 }
 
+void	isprint_test()
+{
+	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
+	assert(ft_isprint('a') == 1);
+	assert(ft_isprint('z') == 1);
+	assert(ft_isprint('l') == 1);
+	assert(ft_isprint('A') == 1);
+	assert(ft_isprint('Z') == 1);
+	assert(ft_isprint('[') == 1);
+	assert(ft_isprint('{') == 1);
+	assert(ft_isprint('~') == 1);
+	assert(ft_isprint('{') == 1);
+	assert(ft_isprint('`') == 1);
+	assert(ft_isprint(' ') == 1);
+	assert(ft_isprint('1') == 1);
+	assert(ft_isprint('3') == 1);
+	assert(ft_isprint('9') == 1);
+	assert(ft_isprint(':') == 1);
+	assert(ft_isprint('/') == 1);
+	assert(ft_isprint('~') == 1);
+	assert(ft_isprint(' ') == 1);
+	assert(ft_isprint(0) == 0);
+	assert(ft_isprint(127) == 0);
+	assert(ft_isprint(31) == 0);
+	assert(ft_isprint('\t') == 0);
+	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
+}
+
 void	strlen_test()
 {
 	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
@@ -143,6 +172,7 @@ int main(void)
 	isalpha_test();
 	isdigit_test();
 	isalnum_test();
+	isprint_test();
 	strlen_test();
 	return (0);
 }
