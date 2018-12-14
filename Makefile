@@ -3,13 +3,14 @@ NAME		= libftASM
 CC			= gcc
 CFLAGS		+= -Wall -Werror -Wextra
 CFLAGS		+= -I inc
-CFLAGS		+= #-g
+CFLAGS		+= -g
 
 ASM			= nasm
 SFLAGS		+= -f macho64
 
-FILES		= ft_bzero.s \
-			  ft_strlen.s \
+FILES		= ft_strlen.s \
+			  ft_bzero.s \
+			  ft_strcat.s \
 
 SRC			= $(addprefix src/, $(FILES))
 OBJ			= $(addprefix obj/, $(FILES:.s=.o))
