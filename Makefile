@@ -11,6 +11,9 @@ SFLAGS		+= -f macho64
 FILES		= ft_strlen.s \
 			  ft_bzero.s \
 			  ft_strcat.s \
+			  ft_isupper.s \
+			  ft_islower.s \
+			  ft_isalpha.s \
 
 SRC			= $(addprefix src/, $(FILES))
 OBJ			= $(addprefix obj/, $(FILES:.s=.o))
