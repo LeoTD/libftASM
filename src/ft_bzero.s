@@ -1,3 +1,8 @@
+; ⎡----------------------------------------------------------------------------⎤
+; ⎢  ft_bzero:
+; ⎢  Fills the given memory area with NULLs.
+; ⎣-------------------------
+
 			default		rel
 			global		_ft_bzero
 
