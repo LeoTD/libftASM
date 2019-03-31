@@ -1,9 +1,7 @@
-NAME		= libftASM
+NAME		= libfts.a
 
 CC			= gcc
-CFLAGS		+= -Wall -Werror -Wextra
-CFLAGS		+= -I inc
-CFLAGS		+= -g
+MYCFLAGS	= -Wall -Werror -Wextra -I inc
 
 ASM			= nasm
 SFLAGS		+= -f macho64
@@ -17,14 +15,20 @@ FILES		= ft_strlen.s \
 			  ft_isdigit.s \
 			  ft_isalnum.s \
 			  ft_isprint.s \
+			  ft_isascii.s \
 			  ft_toupper.s \
 			  ft_tolower.s \
 			  ft_puts.s \
+			  ft_memset.s \
+			  ft_memcpy.s \
+			  ft_strdup.s \
+			  ft_cat.s \
 
 SRC			= $(addprefix src/, $(FILES))
 OBJ			= $(addprefix obj/, $(FILES:.s=.o))
 
 MAIN		= main.c
+TESTEXEC	= libftasm_tests
 
 # ---------------------------------------------------------------------------- #
 
@@ -37,8 +41,8 @@ all: $(NAME)
 
 $(NAME): $(SRC) $(OBJ) $(MAIN)
 	@mkdir -p bin/
-	@printf "%b" "$(GREEN)Compiling: $(BLUE)$(NAME)\n$(NO_COLOR)"
-	@$(CC) $(DEBUG) $(CFLAGS) -o $(NAME) $(MAIN) $(OBJ)
+	@printf "%b" "$(GREEN)Creating Archive: $(BLUE)$(NAME)\n$(NO_COLOR)"
+	@ar rcs $(NAME) $(OBJ)
 	@mv $(NAME) bin/
 
 obj:
@@ -54,11 +58,12 @@ clean:
 
 fclean: clean
 	@rm -f bin/$(NAME)
-	@rm -f $(NAME)
+	@rm -f bin/$(TESTEXEC)
 
-run: all
-	@printf "Running $(NAME).\n\n"
-	@bin/$(NAME)
+test: all
+	@printf "Compiling $(TESTEXEC).\n\n"
+	@$(CC) $(MYCFLAGS) $(CFLAGS)
+	@mv $(NAME) bin/
 
 re: fclean all
 

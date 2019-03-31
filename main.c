@@ -2,25 +2,15 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 #define GREEN "\033[1;32m"
 #define RED "\033[38;5;9;1m"
 #define NO_COLOR "\033[0m"
 #define UP_LN "\033[1A"
 
-
-void		ft_bzero(void *, size_t);
-char		*ft_strcat(char *, char *);
-int			ft_isupper(char);
-int			ft_islower(char);
-int			ft_isalpha(char);
-int			ft_isdigit(char);
-int			ft_isalnum(char);
-int			ft_isprint(char);
-char		ft_toupper(char);
-char		ft_tolower(char);
-int			ft_puts(char *);
-int			ft_strlen(char *);
+#include "libftASM.h"
 
 void	bzero_test()
 {
@@ -157,6 +147,34 @@ void	isprint_test()
 	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
 }
 
+void	isascii_test()
+{
+	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
+	assert(ft_isascii('a') == 1);
+	assert(ft_isascii('z') == 1);
+	assert(ft_isascii('l') == 1);
+	assert(ft_isascii('A') == 1);
+	assert(ft_isascii('Z') == 1);
+	assert(ft_isascii('[') == 1);
+	assert(ft_isascii('{') == 1);
+	assert(ft_isascii('~') == 1);
+	assert(ft_isascii('{') == 1);
+	assert(ft_isascii('`') == 1);
+	assert(ft_isascii(' ') == 1);
+	assert(ft_isascii('1') == 1);
+	assert(ft_isascii('3') == 1);
+	assert(ft_isascii('9') == 1);
+	assert(ft_isascii(':') == 1);
+	assert(ft_isascii('/') == 1);
+	assert(ft_isascii('~') == 1);
+	assert(ft_isascii(' ') == 1);
+	assert(ft_isascii(-1) == 0);
+	assert(ft_isascii(-128) == 0);
+	assert(ft_isascii(-42) == 0);
+	assert(ft_isascii(-99) == 0);
+	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
+}
+
 void	toupper_test()
 {
 	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
@@ -195,20 +213,72 @@ void	strlen_test()
 	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
 }
 
+void	memset_test()
+{
+	char	*buf = malloc(25);
+	bzero(buf, 25);
+	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
+	ft_memset(buf, 'a', 3);
+	assert(strcmp(buf, "aaa") == 0);
+	ft_memset(buf, 'b', 7);
+	assert(strcmp(buf, "bbbbbbb") == 0);
+	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
+	free(buf);
+}
+
+void	memcpy_test()
+{
+	char	*buf = malloc(25);
+	bzero(buf, 25);
+	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
+	ft_memcpy(buf, "aaa\0", 4);
+	assert(strcmp(buf, "aaa") == 0);
+	ft_memcpy(buf, "bbbbbbb\0bb", 8);
+	assert(strcmp(buf, "bbbbbbb") == 0);
+	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
+	free(buf);
+}
+
+void	cat_test()
+{
+	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
+	int		fd = open("ashortfile", O_RDONLY);
+	ft_cat(fd);
+	close(fd);
+	for (fd = 0; fd < 20; ++fd)
+		printf("%s%s", UP_LN, "\033[2K");
+	printf("%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
+}
+
+void	strdup_test()
+{
+	printf("%s |KO| %s%s\n", RED, __func__, NO_COLOR);
+
+	char	*s, *s2;
+	asprintf(&s, "%s%s |OK| %s%s\n", UP_LN, GREEN, __func__, NO_COLOR);
+	s2 = ft_strdup(s);
+	printf("%s", s2);
+}
+
 int main(void)
 {
 	bzero_test();
 	strcat_test();
-	isupper_test();
-	islower_test();
 	isalpha_test();
 	isdigit_test();
 	isalnum_test();
+	isascii_test();
 	isprint_test();
 	toupper_test();
 	tolower_test();
 	puts_test();
 	strlen_test();
-	ft_puts("hello\n");
+	memset_test();
+	memcpy_test();
+	strdup_test();
+	cat_test();
+
+	isupper_test();
+	islower_test();
 	return (0);
 }
