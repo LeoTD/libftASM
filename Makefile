@@ -43,7 +43,6 @@ $(NAME): $(SRC) $(OBJ) $(MAIN)
 	@mkdir -p bin/
 	@printf "%b" "$(GREEN)Creating Archive: $(BLUE)$(NAME)\n$(NO_COLOR)"
 	@ar rcs $(NAME) $(OBJ)
-	@mv $(NAME) bin/
 
 obj:
 	@mkdir -p obj/
